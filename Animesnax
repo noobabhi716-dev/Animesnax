@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIME SNACK.cz | Stream Unlimited Anime</title>
+    <!-- Video Engine & Icons -->
+    <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #080b11;
+            --card-bg: #111723;
+            --primary: #ff0055;
+            --accent: #00f0ff;
+            --text: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text); padding-bottom: 40px; }
+
+        /* Header UI */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: rgba(17, 23, 35, 0.95);
+            border-bottom: 2px solid var(--primary); sticky: top;
+        }
+
+        .logo { font-size: 1.8rem; font-weight: 900; color: #fff; letter-spacing: 1px; }
+        .logo span { color: var(--primary); }
+        .domain-tag { font-size: 0.9rem; color: var(--accent); background: rgba(0, 240, 255, 0.1); padding: 3px 8px; border-radius: 4px; border: 1px solid var(--accent); }
+
+        .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+
+        /* Player Styling */
+        .player-card {
+            background: var(--card-bg); border-radius: 12px; overflow: hidden;
+            border: 1px solid rgba(255, 0, 85, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .controls-bar {
+            padding: 15px; display: flex; justify-content: space-between; align-items: center;
+            background: #0b0f18;
+        }
+
+        .ep-list { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+        .ep-btn {
+            background: #182030; color: #fff; border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold;
+        }
+        .ep-btn:hover, .ep-btn.active { background: var(--primary); border-color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ANIME <span>SNACK</span> <span class="domain-tag">.cz</span></div>
+        <div><i class="fa-solid fa-bolt" style="color: var(--accent);"></i> Ultra HD Streaming</div>
+    </header>
+
+    <div class="container">
+        <div class="player-card">
+            <!-- Real Working Stream Engine -->
+            <video id="anime-player" class="video-js vjs-big-play-centered vjs-16-9" controls preload="auto">
+                <source src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" type="application/x-mpegURL">
+            </video>
+
+            <div class="controls-bar">
+                <div>
+                    <h2 id="ep-title">Demon Slayer: Entertainment District - Episode 1</h2>
+                    <p style="color: var(--accent); font-size: 0.85rem; margin-top: 4px;">ANIME SNACK Server #1 | Full HD</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 25px; margin-bottom: 10px;">Select Episode</h3>
+        <div class="ep-list">
+            <button class="ep-btn active" onclick="playEp('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8', 'Episode 1')">Episode 1</button>
+            <button class="ep-btn" onclick="playEp('https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8', 'Episode 2')">Episode 2</button>
+        </div>
+    </div>
+
+    <script>
+        var player = videojs('anime-player');
+
+        function playEp(url, epName) {
+            document.getElementById('ep-title').innerText = "Demon Slayer: Entertainment District - " + epName;
+            player.src({ src: url, type: 'application/x-mpegURL' });
+            player.play();
+        }
+    </script>
+</body>
+</html>
 
